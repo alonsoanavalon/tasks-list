@@ -24,4 +24,8 @@ class TasksController {
         return $this->taskModel->delete($task_data);
     }
 
+    public function changeCategory ($task_data = array()){
+        return $this->taskModel->changeCategory($task_data);
+    }
+
 }

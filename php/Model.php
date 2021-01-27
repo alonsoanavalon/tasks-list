@@ -16,7 +16,8 @@ abstract class Model {
     abstract protected function read();
     abstract protected function update();
     abstract protected function delete();
-
+    abstract protected function changeCategory();
+    
     private function db_open(){
         $this->conn = new mysqli (
             self::$db_host,

@@ -19,7 +19,9 @@ class TaskModel extends Model {
             $$key = $value;
         }
 
-        $this->query = "INSERT INTO tasks (id_task, category, task, id_user) VALUES ($id_task, $category, $task, $id_user)";
+        $this->query = "INSERT INTO tasks (id_task, category, task, id_user) VALUES ($id_task, '$category', '$task', '$id_user')";
+
+
 
         $this->set_data();
         
@@ -49,18 +51,31 @@ class TaskModel extends Model {
             $$key = $value;
         }
 
-        $this->query = "UPDATE tasks SET id_task = $id_task, category = $id_category, task = $task, id_user = $id_user WHERE id_task = $id_task";
+        $this->query = "UPDATE tasks SET id_task = $id_task, category = '$category', task = '$task', id_user = '$id_user' WHERE id_task = $id_task";
 
         $this->set_data();
         
     }
     public function delete($task_data = ''){
 
-        $this->query = "DELETE FROM tasks WHERE id_task = $id_task";
+        $this->query = "DELETE FROM tasks WHERE id_task = $task_data";
 
-        $this->set_query();
+        $this->set_data();
         
     }
+
+    public function changeCategory($task_data = array()){
+        foreach($task_data as $key => $value){
+            $$key = $value;
+        }
+
+        $this->query = "UPDATE tasks SET category = '$category' WHERE id_task = $id_task";
+
+        var_dump($this->query);
+
+        $this->set_data();
+    }
+
 
 
 }

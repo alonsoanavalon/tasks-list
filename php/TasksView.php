@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="TasksView.php" method="POST">
+
+        <label for="task">New Task : </label>
+        <input type="text" name="task" id="task" required>
+        <input type="submit" value="Ingresar" id="submitTask">
+
+    </form>
+    
+
+    <script src="../js/main.js" type="module"></script>
+</body>
+</html>
+
+
+
+
+
 <?php 
+
+
+
 
 require_once('TasksController.php');
 
@@ -11,6 +40,86 @@ $countDataTask = count($readDataTask);
 $activeTasks = array();
 $completedTasks = array();
 $deletedTasks = array();
+
+
+function getData ($data = ''){
+
+
+    if (isset($_GET[$data])){
+
+        $data = $_GET[$data];
+
+        return $data;
+
+    }
+    
+};
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+    if (isset($_GET['option'])){
+
+        if ($_GET['option'] == 'delete') {
+            
+            $idTask = getData('id');
+    
+            $deletedTask = array(
+                'id_task' => $idTask,
+                'category' => 'Deleted'
+            );
+    
+            $newDataTask->changeCategory($deletedTask);
+    
+        } else if ($_GET['option'] == 'completed'){
+    
+            $idTask = getData('id');
+    
+            $completedTask = array(
+                'id_task' => $idTask, 
+                'category' => 'Completed'
+        
+            );
+    
+            $newDataTask->changeCategory($completedTask);
+    
+        
+        } else if ($_GET['option'] == 'destroy'){
+    
+            $idTask = getData('id');
+    
+            var_dump($idTask);
+    
+            $newDataTask->delete($idTask);
+    
+        } 
+    }
+
+
+
+} else if ($_SERVER['REQUEST_METHOD'] = 'POST' ){
+
+
+
+    if (isset($_POST['task'])){
+
+        $task = $_POST['task'];
+
+        $newTaskArray = array(
+            'id_task' => 0, 
+            'category' => 'Active', 
+            'task' => $task, 
+            'id_user' => 1
+        
+        );
+
+        
+        $newDataTask->create($newTaskArray);
+
+    }
+
+}
+
 
 
 
@@ -53,7 +162,8 @@ for($n=0; $n < $countDataTask; $n++){
         <td>".$readDataTask[$n]['task']."</td>
         <td>".$readDataTask[$n]['category']."</td>
         <td>".$readDataTask[$n]['username']."</td>
-    
+        <td><a href=index.php?option=delete&id=".$readDataTask[$n]['id_task'].">Eliminar</a></td>
+        <td><a href=index.php?option=completed&id=".$readDataTask[$n]['id_task'].">Completada</a></td>
     
     </tr>";
 } 
@@ -107,6 +217,7 @@ for($n = 0; $n < count($deletedTasks) ; $n++){
 
         <td>".$deletedTasks[$n]['task']."</td>
         <td>".$deletedTasks[$n]['category']."</td>
+        <td><a href=index.php?option=destroy&id=".$deletedTasks[$n]['id_task'].">Destruir</a></td>
     
     
     </tr>";
