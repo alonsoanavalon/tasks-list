@@ -24,6 +24,8 @@ class TaskModel extends Model {
 
 
         $this->set_data();
+
+   
         
     }
     public function read($task_data = ''){
@@ -74,6 +76,8 @@ class TaskModel extends Model {
         var_dump($this->query);
 
         $this->set_data();
+
+
     }
 
 

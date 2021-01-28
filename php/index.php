@@ -16,7 +16,9 @@
     <form action="index.php" method="POST">
 
         <label for="task">New Task : </label>
-        <input type="text" name="task" id="task" required>
+
+        <input type="text" name="task" id="task" required/>
+
         <input type="submit" value="Ingresar" id="submitTask">
 
     </form>
@@ -31,8 +33,10 @@
 
 
 
+<?php
+
+require_once('TasksView.php');
 
 
-require_once('TasksView.php')
-
+?>
 
