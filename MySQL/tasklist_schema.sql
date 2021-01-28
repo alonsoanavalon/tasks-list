@@ -18,7 +18,7 @@ CREATE TABLE users (
 CREATE TABLE tasks (
     id_task INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (id_task),
-    category ENUM ('Active', 'Completed', 'Deleted'),
+    category ENUM ('Active', 'Completed'),
     task TEXT,
     id_user INT NOT NULL,
     FULLTEXT KEY search(task),
@@ -28,5 +28,5 @@ CREATE TABLE tasks (
 );
 
 /* Inner Join */
-"select t1.id_task, t1.task, t1.category, t2.username FROM tasks AS t1 INNER JOIN users AS t2 ON t1.id_user = t2.id_user WHERE t2.username = '@keyzen'"
+/* "select t1.id_task, t1.task, t1.category, t2.username FROM tasks AS t1 INNER JOIN users AS t2 ON t1.id_user = t2.id_user WHERE t2.username = '@keyzen'" */
 

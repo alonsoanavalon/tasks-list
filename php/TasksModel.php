@@ -73,7 +73,7 @@ class TaskModel extends Model {
 
         $this->query = "UPDATE tasks SET category = '$category' WHERE id_task = $id_task";
 
-        var_dump($this->query);
+
 
         $this->set_data();
 

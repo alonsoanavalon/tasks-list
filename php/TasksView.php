@@ -1,11 +1,4 @@
-
-
 <?php 
-
-
-
-
-
 
 require_once('TasksController.php');
 
@@ -17,7 +10,7 @@ $readDataTask = $newDataTask->read(1);
 
 $activeTasks = array();
 $completedTasks = array();
-$deletedTasks = array();
+
 
 
 
@@ -35,26 +28,15 @@ function getData ($data = ''){
 };
 
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+   
 
     if (isset($_GET['option'])){
 
-        if ($_GET['option'] == 'delete') {
-            
-            $idTask = getData('id');
-    
-            $deletedTask = array(
-                'id_task' => $idTask,
-                'category' => 'Deleted'
-            );
-    
-            $newDataTask->changeCategory($deletedTask);
-
-
-
-
-    
-        } else if ($_GET['option'] == 'completed'){
+       
+        if ($_GET['option'] == 'completed'){
     
             $idTask = getData('id');
     
@@ -63,26 +45,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 'category' => 'Completed'
         
             );
+
+
+            /* funcion */
+
+    
+
+
+
+            /* fin funcion */
     
             $newDataTask->changeCategory($completedTask);
-
-       
-    
+            header('Location: index.php');
         
-        } else if ($_GET['option'] == 'destroy'){
+        } else if ($_GET['option'] == 'active'){
     
             $idTask = getData('id');
     
-            var_dump($idTask);
+            $activeTask = array(
+                'id_task' => $idTask, 
+                'category' => 'Active'
+        
+            );
+
     
-            $newDataTask->delete($idTask);
+            $newDataTask->changeCategory($activeTask);
+
+            header('Location: index.php');
+
+        }    else if ($_GET['option'] == 'delete'){
+    
+            $id_task = getData('id');
 
 
-            
+
     
-        } 
+            $newDataTask->delete($id_task);
+
+            header('Location: index.php');
+        }
     }
-
+    
+      
+   
 
 
 } else if ($_SERVER['REQUEST_METHOD'] = 'POST' ){
@@ -92,9 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if (isset($_POST['task'])){
 
         if($_POST['task'] !== '') {
-
-
-            echo "distinto d vacío";
             
             $task = $_POST['task'];
 
@@ -105,44 +107,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 'id_user' => 1
             
             );
-            
-
-            
-            
-            $newDataTask->create($newTaskArray);
-    
-            if ($newTaskArray['category'] == 'Active'){
-                var_dump('HOLA');
-                var_dump($newTaskArray);
-                echo '<br>';
-                echo '<br>';
-                echo '<br>';
-                echo '<br>';
-    
-                var_dump($activeTasks);
-    
-                array_push($readDataTask, $newTaskArray);
-                
-                
-     
-            }
-    
-
-
-        } 
-
 
         
+   
 
-    }
+            $newDataTask->create($newTaskArray);
+    
+            array_push($readDataTask, $newTaskArray);
 
-}
-
-
-
-
-
-var_dump($activeTasks);
+        }
+        header('Location: index.php');
+    } 
+} 
 
 
 echo "<h2>Todas las tareas</h2>";
@@ -157,9 +133,6 @@ for($n=0; $n < count($readDataTask); $n++){
         array_push($completedTasks, $readDataTask[$n]);
     }
 
-    if ($readDataTask[$n]['category'] == 'Deleted'){
-        array_push($deletedTasks, $readDataTask[$n]);
-    }
     
 } 
 
@@ -186,9 +159,11 @@ for($n=0; $n < count($readDataTask); $n++){
         <td>".$readDataTask[$n]['id_task']."</td>
         <td>".$readDataTask[$n]['task']."</td>
         <td>".$readDataTask[$n]['category']."</td>
-
         <td><a href=index.php?option=delete&id=".$readDataTask[$n]['id_task'].">Eliminar</a></td>
         <td><a href=index.php?option=completed&id=".$readDataTask[$n]['id_task'].">Completada</a></td>
+        
+
+
     
     </tr>";
 } 
@@ -214,6 +189,8 @@ for($n = 0; $n < count($activeTasks) ; $n++){
 
         <td>".$activeTasks[$n]['task']."</td>
         <td>".$activeTasks[$n]['category']."</td>
+        <td><a href=index.php?option=delete&id=".$activeTasks[$n]['id_task'].">Eliminar</a></td>
+        <td><a href=index.php?option=completed&id=".$activeTasks[$n]['id_task'].">Completada</a></td>
     
     
     </tr>";
@@ -222,34 +199,7 @@ for($n = 0; $n < count($activeTasks) ; $n++){
 
 echo "</table>";
 
-echo "<h2>Eliminados</h2>";
 
-
-echo "
-<table>
-
-    <tr>
-        <th>task</th>
-        <th>category</th>
-    </tr>
-
-";
-
-for($n = 0; $n < count($deletedTasks) ; $n++){
-
-    echo "
-    <tr>
-
-        <td>".$deletedTasks[$n]['task']."</td>
-        <td>".$deletedTasks[$n]['category']."</td>
-        <td><a href=index.php?option=destroy&id=".$deletedTasks[$n]['id_task'].">Destruir</a></td>
-    
-    
-    </tr>";
-
-}
-
-echo "</table>";
 
 echo "<h2>Completados</h2>";
 
@@ -272,14 +222,11 @@ for($n = 0; $n < count($completedTasks) ; $n++){
 
         <td>".$completedTasks[$n]['task']."</td>
         <td>".$completedTasks[$n]['category']."</td>
-    
-    
+        <td><a href=index.php?option=delete&id=".$completedTasks[$n]['id_task'].">Eliminar</a></td>
+        <td><a href=index.php?option=active&id=".$completedTasks[$n]['id_task'].">Activa</a></td>
+
     </tr>";
 
 }
 
 echo "</table>";
-
-
-
-
