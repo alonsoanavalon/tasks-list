@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 } 
 
 
-echo "<h2>Todas las tareas</h2>";
+/* echo "<h2>Todas las tareas</h2>"; */
 
 for($n=0; $n < count($readDataTask); $n++){
 
@@ -137,7 +137,7 @@ for($n=0; $n < count($readDataTask); $n++){
 } 
 
 
-echo "
+/* echo "
 <table>
 
     <tr>
@@ -150,7 +150,7 @@ echo "
 ";
 
 
-/* Este readDataTask Username llega solo cuando selecciono uno de los dos users, si mando '' selecciona todo y no trae username */
+Este readDataTask Username llega solo cuando selecciono uno de los dos users, si mando '' selecciona todo y no trae username
 
 for($n=0; $n < count($readDataTask); $n++){
     echo "
@@ -168,65 +168,67 @@ for($n=0; $n < count($readDataTask); $n++){
     </tr>";
 } 
 
-echo "</table>";
+echo "</table>"; */
 
-echo "<h2>Activos</h2>";
+echo "<div class= 'category-containers'>";
 
-echo "
-<table>
-
-    <tr>
-        <th>task</th>
-        <th>category</th>
-    </tr>
-
-";
-
-for($n = 0; $n < count($activeTasks) ; $n++){
+   
 
     echo "
-    <tr>
+    <div class='task-container'>
 
-        <td>".$activeTasks[$n]['task']."</td>
-        <td>".$activeTasks[$n]['category']."</td>
-        <td><a href=index.php?option=delete&id=".$activeTasks[$n]['id_task'].">Eliminar</a></td>
-        <td><a href=index.php?option=completed&id=".$activeTasks[$n]['id_task'].">Completada</a></td>
+    ";
+    echo "<h2>Activos</h2>";
+    for($n = 0; $n < count($activeTasks) ; $n++){
+
+        echo "
+
+            <div class = 'task'>
+
+            <div class = 'active-task'>".$activeTasks[$n]['task']."</div>
+
+            <div class='task-options'>
+
+                <div class='deleted-task'><a href=index.php?option=delete&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-minus-circle'></i></a></div>
+                <div class='completed-task'><a href=index.php?option=completed&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-check-circle'></i></a></div>
+
+            </div>
+
+            </div>
+        
+        
+        ";
+
+    }
+
+    echo "</div>";
+
+
+
     
     
-    </tr>";
-
-}
-
-echo "</table>";
-
-
-
-echo "<h2>Completados</h2>";
-
-
-
-echo "
-<table>
-
-    <tr>
-        <th>task</th>
-        <th>category</th>
-    </tr>
-
-";
-
-for($n = 0; $n < count($completedTasks) ; $n++){
-
+    
     echo "
-    <tr>
+    <div class='task-container'>
+    
+    ";
+    
+    echo "<h2>Completados</h2>";
+    for($n = 0; $n < count($completedTasks) ; $n++){
 
-        <td>".$completedTasks[$n]['task']."</td>
-        <td>".$completedTasks[$n]['category']."</td>
-        <td><a href=index.php?option=delete&id=".$completedTasks[$n]['id_task'].">Eliminar</a></td>
-        <td><a href=index.php?option=active&id=".$completedTasks[$n]['id_task'].">Activa</a></td>
+        echo "
+        <div class = 'task'>
 
-    </tr>";
+            <div class='completed-task'>".$completedTasks[$n]['task']."</div>
 
-}
+            <div class='task-options'>
+                <div class='deleted-task'><a href=index.php?option=delete&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg fa-minus-circle'></i></a></div>
+                <div class='active-task'><a href=index.php?option=active&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg  fa-undo'></i></a></div>
+            </div>
 
-echo "</table>";
+        </div>";
+
+    }
+
+    echo "</div>";
+echo "</div>";

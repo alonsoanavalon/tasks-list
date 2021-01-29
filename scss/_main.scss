@@ -1,0 +1,130 @@
+*,
+*::after,
+*::before {
+    scroll-behavior: smooth;
+    max-width: 1920px;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.header {
+    height:80px;
+    background-color:#6F8CD6;
+    margin:0;
+    padding: 0;
+
+    position: relative;
+
+    .header-title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        font-family: 'Fredoka One', cursive;
+        color:#fff;
+        letter-spacing: .2rem;
+    }
+}
+
+.task-form {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    align-content: center;
+
+    flex-direction: column;
+
+    label {
+        font-weight: 500;
+        font-size:1.5rem;
+        margin:2rem 0 1rem;
+    }
+
+    #task {
+        outline: none;
+      
+    }
+
+    #submitTask {
+        margin:1rem 0 1rem;
+        background-color:#6F8CD6;
+        font-family: 'Fredoka One', cursive;
+        border-style: none;
+        outline: none;
+        color:#fff;
+        padding:.8rem;
+        border-radius: .8rem;
+        cursor: pointer;
+        -webkit-border-radius: .8rem;
+        -moz-border-radius: .8rem;
+        -ms-border-radius: .8rem;
+        -o-border-radius: .8rem;
+    }
+
+    
+}
+.category-containers{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+
+.task-container {
+
+    h2 {
+        text-align: center;
+        margin:0 0 1rem;
+    }
+
+    display: flex;
+    flex-direction: column;
+    padding:2rem;
+    border-radius: .5rem;
+
+    width:40%;
+    max-width:500px;
+    min-width:300px;
+    min-height:200px;
+    height:50%;
+    -webkit-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.75);
+
+    .task {
+
+        display: flex;
+        justify-content:space-between;
+        border-bottom: thin solid #ccc;
+
+
+
+
+    }
+
+    .task-options {
+        display: inline-block;
+
+        width:60px;
+        div {
+            display: inline;
+            a {
+                i {
+                    font-size:2rem;
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    height:100px;
+    margin-top:2rem;
+    background-color: #6F8CD6;
+}
