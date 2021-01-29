@@ -178,19 +178,19 @@ echo "<div class= 'category-containers'>";
     <div class='task-container'>
 
     ";
-    echo "<h2>Activos</h2>";
+    echo "<h2>Tareas activas</h2>";
     for($n = 0; $n < count($activeTasks) ; $n++){
 
         echo "
 
             <div class = 'task'>
 
-            <div class = 'active-task'>".$activeTasks[$n]['task']."</div>
+            <div class = 'active-task'><p><i class='fas fa-caret-right'></i> ".$activeTasks[$n]['task']."</p></div>
 
             <div class='task-options'>
 
-                <div class='deleted-task'><a href=index.php?option=delete&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-minus-circle'></i></a></div>
-                <div class='completed-task'><a href=index.php?option=completed&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-check-circle'></i></a></div>
+                <div class='deleted-task'><a href=index.php?option=delete&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-minus'></i></a></div>
+                <div class='completed-task'><a href=index.php?option=completed&id=".$activeTasks[$n]['id_task']."><i class='fas fa-lg fa-check'></i></a></div>
 
             </div>
 
@@ -213,17 +213,17 @@ echo "<div class= 'category-containers'>";
     
     ";
     
-    echo "<h2>Completados</h2>";
+    echo "<h2>Tareas completadas</h2>";
     for($n = 0; $n < count($completedTasks) ; $n++){
 
         echo "
         <div class = 'task'>
 
-            <div class='completed-task'>".$completedTasks[$n]['task']."</div>
+            <div class='completed-task'><i class='fas fa-caret-right'></i> ".$completedTasks[$n]['task']."</div>
 
             <div class='task-options'>
-                <div class='deleted-task'><a href=index.php?option=delete&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg fa-minus-circle'></i></a></div>
-                <div class='active-task'><a href=index.php?option=active&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg  fa-undo'></i></a></div>
+                <div class='deleted-task'><a href=index.php?option=delete&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg fa-minus'></i></a></div>
+                <div class='actived-task'><a href=index.php?option=active&id=".$completedTasks[$n]['id_task']."><i class='fas fa-lg  fa-undo'></i></a></div>
             </div>
 
         </div>";
