@@ -10,7 +10,7 @@ class TaskModel extends Model {
     private $task;
 
     public function __construct(){
-        $this->db_name = 'tasklist';
+        $this->db_name = 'chq18575_tasklist';
     }
 
     public function create($task_data = array()){
