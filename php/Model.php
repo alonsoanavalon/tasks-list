@@ -1,8 +1,8 @@
 <?php
 
 abstract class Model {
-    private static $db_host = 'srv9.cpanelhost.cl';
-    private static $db_user = 'chq18575_keyzen';
+    private static $db_host = 'localhost';
+    private static $db_user = 'root';
     private static $db_pass = 'elmasmejor';
     private static $db_charset = 'utf8';
 

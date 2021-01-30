@@ -1,4 +1,8 @@
-USE chq18575_tasklist;
+DROP DATABASE IF EXISTS tasklist;
+
+CREATE DATABASE IF NOT EXISTS tasklist;
+
+USE tasklist;
 
 /* Creamos tabla usuarios */
 
